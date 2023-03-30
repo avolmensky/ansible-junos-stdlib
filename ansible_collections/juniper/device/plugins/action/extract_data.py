@@ -48,7 +48,8 @@ connection_spec_fallbacks = {
     'baud': ['baud'],
     'console': ['console'],
     'mode': ['mode'],
-    'timeout': ['timeout', 'ansible_timeout']
+    'timeout': ['timeout', 'ansible_timeout'],
+    'conn_open_timeout': ['conn_open_timeout'],
 }
 
 class ExtractData:
