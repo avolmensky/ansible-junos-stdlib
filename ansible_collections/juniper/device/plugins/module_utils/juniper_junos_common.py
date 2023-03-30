@@ -1080,14 +1080,8 @@ class JuniperJunosModule(AnsibleModule):
         """
         # Move all of the connection arguments into connect_args
         connect_args = {}
-        print(self.params, flush=True)
         for key in connection_spec:
             if self.params.get(key) is not None:
-                print("##################################", flush=True)
-                print(f"{key}: {self.params.get(key)}", flush=True)
-                print("##################################", flush=True)
-                print("##################################", flush=True)
-
                 connect_args[key] = self.params.get(key)
 
         try:
