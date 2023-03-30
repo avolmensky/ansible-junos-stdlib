@@ -1082,6 +1082,9 @@ class JuniperJunosModule(AnsibleModule):
         connect_args = {}
         for key in connection_spec:
             if self.params.get(key) is not None:
+                print("##################################", flush=True)
+                print(self.params.get(key), flush=True)
+                print("##################################", flush=True)
                 connect_args[key] = self.params.get(key)
 
         try:
@@ -1094,6 +1097,10 @@ class JuniperJunosModule(AnsibleModule):
             self.logger.debug("Creating device parameters: %s",
                               log_connect_args)
             timeout = connect_args.pop('timeout')
+
+            if 'conn_open_timeout' in connect_args and 'cs_user' in connect_args:
+                connect_args['timeout'] = connect_args.pop('conn_open_timeout')
+
             self.dev = jnpr.junos.device.Device(**connect_args)
             self.logger.debug("Opening device.")
             self.dev.open()
