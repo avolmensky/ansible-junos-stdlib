@@ -1099,11 +1099,7 @@ class JuniperJunosModule(AnsibleModule):
 
             self.logger.debug("Creating device parameters: %s",
                               log_connect_args)
-            timeout = connect_args.get('timeout')
-
-            # if 'conn_open_timeout' in connect_args and 'cs_user' in connect_args:
-            #     connect_args['timeout'] = connect_args.pop('conn_open_timeout')
-
+            timeout = connect_args.pop('timeout')
             self.dev = jnpr.junos.device.Device(**connect_args)
             self.logger.debug("Opening device.")
             self.dev.open()
